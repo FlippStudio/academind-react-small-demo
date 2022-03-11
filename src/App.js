@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Backdrop from "./components/Backdrop";
+import Modal from "./components/Modal";
+import Todo from "./components/Todo";
+import { useState } from "react";
 
 function App() {
+  const [overlay, setOverlay] = useState(false);
+
+  const showModal = () => {
+    setOverlay(!overlay);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>My Todos</h1>
+      <Todo title="Appointment" onClick={showModal} />
+      <Todo title="Appointment" onClick={showModal} />
+      {overlay && <Modal onClick={showModal} />}
+      {overlay && <Backdrop onClick={showModal} />}
     </div>
   );
 }
